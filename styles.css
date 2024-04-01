@@ -1,0 +1,82 @@
+* {
+    display: flex;
+    align-items: center;
+   
+    flex-direction: column;
+    background-color: black;
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    border: 0;
+    color: white;
+    
+}
+
+.displayContainer {
+    width: 400px;
+    padding-right: 50px;
+    height: 136px;
+
+   
+    /* align-items: flex-end;
+    justify-content: flex-end; */
+}
+
+.topDisplay, .bottomDisplay {
+    align-self: self-end;
+    padding: 10px;
+    font-size: 42px;
+    height: 50%;
+
+}
+.topDisplay{
+ 
+    font-size: 35px;
+}
+
+
+.buttonContainer {
+    flex-direction: row;
+    width: 400px;
+}
+
+.buttonLeft {
+  
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+
+    button {
+        width: 90px;
+        height: 90px;
+        margin: 2px;        
+        justify-content: center;  
+        border-radius: 30px; 
+        font-family: sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        border: 0;
+        color: white;
+
+    }
+        
+}
+#zero {
+    width: 184px;
+}
+
+.number {
+    background-color: gray;
+    color: white;
+}
+
+.operator, .equals {
+    background-color: rgb(255, 179, 0);
+    color: white;
+}
+.clear {
+    background-color: grey;
+    color: white;
+}
+
