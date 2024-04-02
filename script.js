@@ -8,6 +8,7 @@ let bottomDisplayText = displayBottom.textContent;
 let topDisplayText = displayTop.textContent;
 let operatorPressed = false;
 let numberPressed = false;
+let equalPressed = false;
 let currentValue = 0;
 
 
@@ -16,6 +17,7 @@ function clearDisplay() {
     displayBottom.textContent='';
     operatorPressed = false;
     numberPressed = false;
+    equalPressed = false;
     console.log('cleared')
 };
 
@@ -28,6 +30,7 @@ function updateBottomDisplay(button) {
 }
 
 function sum() {
+    equalPressed = true;
     bottomDisplayText = displayBottom.textContent;
     let array = bottomDisplayText.split(' ');
     let numbersArray = array.filter(function(str) {
@@ -97,7 +100,9 @@ equals.addEventListener('click', function(button) {
 
 numbers.forEach(function(button) {
     button.addEventListener('click', function() {
-        
+        if (equalPressed === true) {
+            clearDisplay();
+        }
         numberPressed = true;
         
         console.log(button.innerHTML);
