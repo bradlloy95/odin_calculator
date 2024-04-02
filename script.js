@@ -1,9 +1,12 @@
+//make variables for all the buttons
 const displayTop = document.querySelector('.topDisplay');
 const displayBottom = document.querySelector('.bottomDisplay');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clearbtn = document.querySelector('.clear');
 const equals = document.querySelector('.equals')
+
+// create variables to keep track of states
 let bottomDisplayText = displayBottom.textContent;
 let topDisplayText = displayTop.textContent;
 let operatorPressed = false;
@@ -18,26 +21,32 @@ function clearDisplay() {
     operatorPressed = false;
     numberPressed = false;
     equalPressed = false;
-    console.log('cleared')
+    //console.log('cleared')
 };
 
+
+
 function updateBottomDisplay(button) {
+    //get current display
     bottomDisplayText = displayBottom.textContent;
     topDisplayText = displayTop.textContent;
+    // concat button value onto display
     displayBottom.textContent = bottomDisplayText + button.textContent;
-    // displayTop.textContent = topDisplayText + button.textContent;
+  
     
 }
 
 function sum() {
-    equalPressed = true;
+    //create a copy of whats in the display
     bottomDisplayText = displayBottom.textContent;
+    //split the string into an array
     let array = bottomDisplayText.split(' ');
+    //filter out the numbers
     let numbersArray = array.filter(function(str) {
         return !isNaN(str)
     })
-    console.log(numbersArray)
-    //console.log(array)
+    
+    //check for operator
     if (array.includes('+')) {
 
         //fitler out the numbers and turn to ints
@@ -88,24 +97,24 @@ clearbtn.addEventListener('click', function() {
 
 
 equals.addEventListener('click', function(button) {
+    // only runs when a valid equaltion entered
     if (operatorPressed === true && numberPressed === true) {
-        currentValue = sum()
-        
-        console.log(button.textContent)
-        //updateBottomDisplay(button);
-        
-        //console.log(currentValue)
-    }
+        // update states     
+        equalPressed = true;        
+        operatorPressed = false;
+        // run sum and add to current value
+        currentValue = sum()      
+        }
 })
 
 numbers.forEach(function(button) {
     button.addEventListener('click', function() {
+        // start new sum if no operator is pressed
         if (equalPressed === true) {
             clearDisplay();
         }
+        // update state
         numberPressed = true;
-        
-        console.log(button.innerHTML);
         updateBottomDisplay(button)
     })
 
@@ -113,26 +122,19 @@ numbers.forEach(function(button) {
 
 operators.forEach(function(button) {
     button.addEventListener('click', function() {
-        
-
-        // if (button.id == 'equals') {
-        //     console.log('equals')
-        // }
-
+        // update state
+        equalPressed = false;   
+        // run if value 'a' has been entered and operator is added
         if (operatorPressed === false && numberPressed  === true) {
-            //console.log('false')
+            // update states so only a number can be pressed next
             operatorPressed = true;
             numberPressed = false;
-            //console.log(button.innerHTML);
             updateBottomDisplay(button)
+        // can only run if 2 numbers entered and 1 operator. works as 'equals'
         } else if (operatorPressed === true && numberPressed === true) {
             currentValue = sum()
             numberPressed = false;
             updateBottomDisplay(button);
-            
-            //console.log(currentValue)
-        }
-
-        
+        }        
     })
 })
