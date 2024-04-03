@@ -16,8 +16,10 @@ let currentValue = 0;
 
 
 function clearDisplay() {
+    // clear the display
     displayTop.textContent = '';
     displayBottom.textContent='';
+    // set states to false
     operatorPressed = false;
     numberPressed = false;
     equalPressed = false;
@@ -48,9 +50,7 @@ function sum() {
     
     //check for operator
     if (array.includes('+')) {
-
         //fitler out the numbers and turn to ints
-
         const result = numbersArray.reduce((total, currentItem) => {
              return total + parseInt(currentItem)
         }, 0); 
